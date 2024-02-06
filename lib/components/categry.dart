@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
+
+
 import '../Models/categry_models.dart';
 import '../Screens/categry_view.dart';
 
+// ignore: must_be_immutable
 class Categry extends StatelessWidget {
   CategryModels categryModels;
   Categry({super.key, required this.categryModels});
