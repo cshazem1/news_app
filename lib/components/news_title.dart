@@ -1,11 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:newsegb/Models/article_models.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../Models/article_models.dart';
+
 class NewsTitle extends StatefulWidget {
-  ArticleModel articleModel;
-  NewsTitle({super.key, required this.articleModel});
+  final ArticleModel articleModel;
+  const NewsTitle({super.key, required this.articleModel});
 
   @override
   State<NewsTitle> createState() => _NewsTitleState();
@@ -14,14 +14,8 @@ class NewsTitle extends StatefulWidget {
 class _NewsTitleState extends State<NewsTitle> {
   @override
   Widget build(BuildContext context) {
-
     return GestureDetector(
-      onTap: ()
-        async =>
-            _launchUrl()
-
-      ,
-
+      onTap: () async => _launchUrl(),
       child: Row(
         children: [
           Expanded(
@@ -44,10 +38,9 @@ class _NewsTitleState extends State<NewsTitle> {
                   ],
                   image: DecorationImage(
                       fit: BoxFit.cover,
-                      image: NetworkImage(
-                          widget.articleModel.image??"https://i.stack.imgur.com/l60Hf.png"))),
+                      image: NetworkImage(widget.articleModel.image ??
+                          "https://i.stack.imgur.com/l60Hf.png"))),
             ),
-
           ),
           Expanded(
             flex: 3,
@@ -56,17 +49,14 @@ class _NewsTitleState extends State<NewsTitle> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Column(
-
                   children: [
                     SizedBox(
                       height: 50,
                       child: Text(
-      widget.articleModel.Title??"NO Titel"
-      ,                      maxLines: 2,
+                        widget.articleModel.title,
                         overflow: TextOverflow.ellipsis,
-
-                        style:
-                            const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                        style: const TextStyle(
+                            fontSize: 15, fontWeight: FontWeight.bold),
                       ),
                     ),
                     SizedBox(
@@ -74,11 +64,9 @@ class _NewsTitleState extends State<NewsTitle> {
                       child: Padding(
                         padding: const EdgeInsets.only(top: 10.0),
                         child: Text(
-      widget.articleModel.describtion??"NO Describtion",
-
+                          widget.articleModel.description ?? "NO Description",
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-
                           style: const TextStyle(
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
@@ -94,10 +82,7 @@ class _NewsTitleState extends State<NewsTitle> {
         ],
       ),
     );
-
   }
-
-
 
   Future<void> _launchUrl() async {
     final Uri url = Uri.parse(widget.articleModel.url!);

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:newsegb/Companents/categry_list_view.dart';
-import 'package:newsegb/Companents/news_list_view_builder.dart';
+
+import '../Components/categry_list_view.dart';
+import '../Components/news_list_view_builder.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -59,7 +62,7 @@ class HomePage extends StatelessWidget {
                 height: 20,
               ),
             ),
-            SliverPadding(
+            const SliverPadding(
               padding: EdgeInsets.only(top: 10, bottom: 20),
               sliver: SliverToBoxAdapter(
                 child: Divider(
@@ -71,7 +74,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            NewsListViewBuilder(categry: "general"),
+            const NewsListViewBuilder(categry: "general"),
           ],
         ));
   }
